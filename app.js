@@ -4,8 +4,8 @@ var builder = require('botbuilder');
 
 //BOT Connector
 var connector = new builder.ChatConnector({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
+    appId: 'f5be6924-a0ca-421f-b43c-07980aac8d08',
+    appPassword: 'oeeYU2_[ugtcDKQHP6797}:'
 });
 
 
