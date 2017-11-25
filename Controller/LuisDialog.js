@@ -9,15 +9,13 @@ exports.startDialog = function(bot) {
     bot.recognizer(recognizer);
 
 
-
-    bot.dialog('getTransactions', function(session, args) {
-
-        session.send('getting exchange rates...');
-        currencyConversion.displayConversions(session);
-
+    bot.dialog('ExchangeRate', function(session) {
+        session.send('the exchange rate is...');
+        currencyConversion.displayConversions();
     }).triggerAction({
-        matches: 'getTransactions'
+        matches: 'ExchangeRate'
     });
+
 
 
     bot.dialog('Welcome', function(session) {
