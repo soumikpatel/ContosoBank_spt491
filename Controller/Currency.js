@@ -12,7 +12,6 @@ function displayConversions(message, session) {
 
     //var message = new builder.Message(session);
     console.log(message);
-    //session.send('test');
     session.send(message);
     //console.log(session);
 }

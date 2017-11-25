@@ -11,7 +11,7 @@ exports.startDialog = function(bot) {
 
     bot.dialog('ExchangeRate', function(session) {
         session.send('the exchange rate is...');
-        currencyConversion.displayConversions();
+        currencyConversion.displayConversions(session);
     }).triggerAction({
         matches: 'ExchangeRate'
     });
