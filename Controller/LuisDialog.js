@@ -1,4 +1,5 @@
 var builder = require('botbuilder');
+var currencyConversion = require('./Currency');
 
 
 exports.startDialog = function(bot) {
@@ -10,24 +11,13 @@ exports.startDialog = function(bot) {
 
 
     bot.dialog('getTransactions', function(session, args) {
-        //if (!isAttachment(session)) {
 
-        // Pulls out the food entity from the session if it exists
-        var shopEntity = builder.EntityRecognizer.findEntity(args.intent.entities, 'shop');
+        session.send('getting exchange rates...');
+        currencyConversion.displayConversions(session);
 
-        // Checks if the for entity was found
-        if (shopEntity) {
-            session.send('Retreving transactions at %s...', shopEntity.entity);
-            // Insert logic here later
-
-        } else {
-            session.send("No food identified! Please try again");
-        }
-        // }
     }).triggerAction({
         matches: 'getTransactions'
     });
-
 
 
     bot.dialog('Welcome', function(session) {
