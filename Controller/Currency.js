@@ -302,22 +302,9 @@ function displayConversions(message, session, base, conversion) {
 
     session.send(new builder.Message(session).addAttachment(card));
 
-    //var message = new builder.Message(session);
-    console.log(message);
-    session.send(message);
-
     var response = JSON.parse(message);
     var jsonResponse = response.rates;
 
-
-
-
-    // console.log('its got here');
-    // console.log(session.message.value.conversion);
-    //var currenyKey = session.message.value.conversion.toString();
-
-    // console.log(Object.keys(conversions.rates)[0]);
-    //var baseCurrency = Object.keys(response.base);
     var conversionCurrency = Object.keys(conversions.rates)[0];
 
     for (var symbolValue in jsonResponse) {
@@ -325,14 +312,5 @@ function displayConversions(message, session, base, conversion) {
     }
 
     session.send("The value of 1 " + conversions.base + " is " + keyValue + " " + conversionCurrency);
-    console.log(response);
-    console.log(jsonResponse);
-    //console.log(currencyValue);
-
-    //console.log(conversions);
-    //console.log(message.rates);
-
-    //console.log(session);
-    //session.send(message).addAttachment();
 
 }
