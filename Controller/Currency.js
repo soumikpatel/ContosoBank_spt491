@@ -305,12 +305,14 @@ function displayConversions(message, session, base, conversion) {
     var response = JSON.parse(message);
     var jsonResponse = response.rates;
 
-    var conversionCurrency = Object.keys(conversions.rates)[0];
+    //var conversionCurrency = Object.keys(conversions.rates)[0];
+    // var x = session.message.value.base;
 
     for (var symbolValue in jsonResponse) {
         var keyValue = jsonResponse[symbolValue];
+        session.send("The value of 1 " + conversions.base + " is " + keyValue + " " + symbolValue);
     }
 
-    session.send("The value of 1 " + conversions.base + " is " + keyValue + " " + conversionCurrency);
+
 
 }
