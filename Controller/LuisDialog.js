@@ -9,9 +9,24 @@ exports.startDialog = function(bot) {
     bot.recognizer(recognizer);
 
 
-    bot.dialog('ExchangeRate', function(session) {
-        session.send('the exchange rate is...');
-        currencyConversion.displayConversions(session);
+    bot.dialog('ExchangeRate', function(session, args) {
+        //session.send('the exchange rate is...');
+        console.log('gettingn exchange rates ..........');
+        //currencyConversion.displayConversions(session);
+
+        if (session.message && session.message.value) {
+            var base = session.message.value.base;
+            var conversion = session.message.value.conversion;
+
+            //var amount = session.message.value.amount;
+            currencyConversion.displayConversions(session, base, conversion);
+        } else {
+            session.dialogData.args = args || {};
+            var adaptiveCard = currencyConversion.displayConversions(session);
+            var msg = new builder.Message(session).addAttachment(adaptiveCard)
+            session.send(msg);
+        }
+
     }).triggerAction({
         matches: 'ExchangeRate'
     });

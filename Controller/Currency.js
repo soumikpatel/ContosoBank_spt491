@@ -1,14 +1,16 @@
 var rest = require('../API/RestClient');
 var builder = require('botbuilder');
 
-exports.displayConversions = function getExchangeRates(session) {
-    var url = 'https://api.fixer.io/latest?base=NZD';
+exports.displayConversions = function getExchangeRates(session, base, conversion) {
+    var url = 'https://api.fixer.io/latest?base=' + base + '&symbols=' + conversion;
     rest.getCurrencyData(url, session, displayConversions);
 }
 
 
-function displayConversions(message, session) {
+function displayConversions(message, session, base, conversion) {
     var conversions = JSON.parse(message);
+
+
 
     var card = {
         contentType: "application/vnd.microsoft.card.adaptive",
@@ -26,7 +28,7 @@ function displayConversions(message, session) {
                 },
                 {
                     "type": "Input.ChoiceSet",
-                    "id": "Base",
+                    "id": "base",
                     //"title": "Convert from",
                     "style": "compact",
                     "choices": [{
@@ -161,7 +163,7 @@ function displayConversions(message, session) {
                 },
                 {
                     "type": "Input.ChoiceSet",
-                    "id": "Conversion",
+                    "id": "conversion",
                     //"title": "Convert from",
                     "style": "compact",
                     "choices": [{
@@ -290,7 +292,11 @@ function displayConversions(message, session) {
                         }
                     ]
                 }
-            ]
+            ],
+            "actions": [{
+                "type": "Action.Submit",
+                "title": "Submit"
+            }]
         }
     }
 
@@ -299,6 +305,32 @@ function displayConversions(message, session) {
     //var message = new builder.Message(session);
     console.log(message);
     session.send(message);
+
+    var response = JSON.parse(message);
+    var jsonResponse = response.rates;
+
+
+
+
+    // console.log('its got here');
+    // console.log(session.message.value.conversion);
+    //var currenyKey = session.message.value.conversion.toString();
+
+    // console.log(Object.keys(conversions.rates)[0]);
+    //var baseCurrency = Object.keys(response.base);
+    var conversionCurrency = Object.keys(conversions.rates)[0];
+
+    for (var symbolValue in jsonResponse) {
+        var keyValue = jsonResponse[symbolValue];
+    }
+
+    session.send("The value of 1 " + conversions.base + " is " + keyValue + " " + conversionCurrency);
+    console.log(response);
+    console.log(jsonResponse);
+    //console.log(currencyValue);
+
+    //console.log(conversions);
+    //console.log(message.rates);
 
     //console.log(session);
     //session.send(message).addAttachment();
