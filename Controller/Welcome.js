@@ -1,5 +1,4 @@
 var builder = require('botbuilder');
-var mainLogo = require('../brandLogo/MainLogo.png');
 
 exports.welcomeCard = function welCard(session) {
     var card = {
@@ -11,37 +10,24 @@ exports.welcomeCard = function welCard(session) {
             "body": [{
                 "type": "Container",
                 "items": [{
-                    "type": "ColumnSet",
-                    "columns": [{
-                            "type": "Column",
-                            "width": "auto",
-                            "items": [{
-                                "type": "Image",
-                                "url": ,
-                                "size": "small",
-                                "style": "person"
-                            }]
-                        },
-                        {
-                            "type": "Column",
-                            "width": "stretch",
-                            "items": [{
-                                    "type": "TextBlock",
-                                    "text": "Welcome to Contoso Bank!",
-                                    "weight": "bolder",
-                                    "wrap": true
-                                },
-                                {
-                                    "type": "TextBlock",
-                                    "spacing": "none",
-                                    "text": "How may I help you today?",
-                                    //"isSubtle": true,
-                                    "wrap": true
-                                }
-                            ]
-                        }
-                    ]
-                }]
+                        "type": "Image",
+                        "url": "https://github.com/soumikpatel/ContosoBank_spt491/blob/master/brandLogo/MainLogo.png",
+                        "size": "small",
+                        "style": "person"
+                    }, {
+                        "type": "TextBlock",
+                        "text": "Welcome to Contoso Bank!",
+                        "weight": "bolder",
+                        "wrap": true
+                    },
+                    {
+                        "type": "TextBlock",
+                        "spacing": "none",
+                        "text": "How may I help you today?",
+                        //"isSubtle": true,
+                        "wrap": true
+                    }
+                ]
             }]
         }
 
