@@ -14,12 +14,14 @@ exports.startDialog = function(bot) {
     bot.dialog('ExchangeRate', function(session, args) {
 
         if (session.message && session.message.value) {
+            console.log('in if')
             var base = session.message.value.base;
             var conversion = session.message.value.conversion;
             currencyConversion.displayConversions(session, base, conversion);
         } else {
             session.dialogData.args = args || {};
-            var adaptiveCard = currencyConversion.displayConversions(session);
+            console.log('in else');
+            var adaptiveCard = currencyConversion.getConversionCard(session);
             var msg = new builder.Message(session).addAttachment(adaptiveCard)
             session.send(msg);
         }

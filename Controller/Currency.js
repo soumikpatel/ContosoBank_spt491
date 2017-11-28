@@ -7,11 +7,7 @@ exports.displayConversions = function getExchangeRates(session, base, conversion
 }
 
 
-function displayConversions(message, session, base, conversion) {
-    var conversions = JSON.parse(message);
-
-
-
+exports.getConversionCard = function(session) {
     var card = {
         contentType: "application/vnd.microsoft.card.adaptive",
         content: {
@@ -29,7 +25,6 @@ function displayConversions(message, session, base, conversion) {
                 {
                     "type": "Input.ChoiceSet",
                     "id": "base",
-                    //"title": "Convert from",
                     "style": "compact",
                     "choices": [{
                             "title": "AUD",
@@ -164,7 +159,6 @@ function displayConversions(message, session, base, conversion) {
                 {
                     "type": "Input.ChoiceSet",
                     "id": "conversion",
-                    //"title": "Convert from",
                     "style": "compact",
                     "choices": [{
                             "title": "AUD",
@@ -299,9 +293,10 @@ function displayConversions(message, session, base, conversion) {
             }]
         }
     }
+    return card;
+}
 
-    session.send(new builder.Message(session).addAttachment(card));
-
+function displayConversions(message, session, base, conversion) {
     var response = JSON.parse(message);
     var jsonResponse = response.rates;
 
@@ -310,9 +305,6 @@ function displayConversions(message, session, base, conversion) {
 
     for (var symbolValue in jsonResponse) {
         var keyValue = jsonResponse[symbolValue];
-        session.send("The value of 1 " + conversions.base + " is " + keyValue + " " + symbolValue);
+        session.send("The value of 1 " + response.base + " is " + keyValue + " " + symbolValue);
     }
-
-
-
 }
