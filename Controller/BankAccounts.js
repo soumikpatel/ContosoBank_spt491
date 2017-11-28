@@ -73,17 +73,16 @@ function handleAccountDetailsResponse(message, session) {
             "type": "AdaptiveCard",
             "version": "0.5",
             "body": [{
-                    "type": "Container",
-                    "items": [{
-                        "type": "ColumnSet",
-                        "columns": columns
-                    }]
+                "type": "Container",
+                "items": [{
+                    "type": "ColumnSet",
+                    "columns": columns
                 }]
-                /*,
-                            "actions": [{
-                                "type": "Action.Submit",
-                                "title": "Apply"
-                            }]*/
+            }],
+            "actions": [{
+                "type": "Action.Submit",
+                "title": "Apply"
+            }]
         }
     }));
 }
