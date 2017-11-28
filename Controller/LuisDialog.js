@@ -2,6 +2,7 @@ var builder = require('botbuilder');
 var currencyConversion = require('./Currency');
 var bankingAccounts = require('./BankAccounts');
 var application = require('./Application');
+var welcome = require('./Welcome');
 
 
 exports.startDialog = function(bot) {
@@ -51,7 +52,10 @@ exports.startDialog = function(bot) {
 
     //------------ Welcome
     bot.dialog('Welcome', function(session) {
-        session.send('Hello there!');
+        var adaptiveCard = welcome.welcomeCard(session);
+        var msg = new builder.Message(session).addAttachment(adaptiveCard)
+        session.send(msg);
+        //session.send('Hello there!');
     }).triggerAction({
         matches: 'Welcome'
     });
