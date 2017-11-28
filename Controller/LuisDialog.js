@@ -1,5 +1,6 @@
 var builder = require('botbuilder');
 var currencyConversion = require('./Currency');
+var bankingAccounts = require('./BankAccounts');
 
 
 exports.startDialog = function(bot) {
@@ -26,6 +27,12 @@ exports.startDialog = function(bot) {
         matches: 'ExchangeRate'
     });
 
+
+    bot.dialog('BankAccounts', function(session) {
+        session.send(bankingAccounts.displayBankAccounts(session));
+    }).triggerAction({
+        matches: 'BankAccounts'
+    });
 
 
     bot.dialog('Welcome', function(session) {
