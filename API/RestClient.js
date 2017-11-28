@@ -13,7 +13,7 @@ exports.getAccountDetails = function getData(url, session, callback) {
 
 
 //------------ Bank Account Application POST request
-exports.apply = function getData(url, username, applicationData) {
+exports.apply = function getData(url, name, email, tel, accType, drNum, drVer) {
     var options = {
         url: url,
         method: 'POST',
@@ -22,7 +22,12 @@ exports.apply = function getData(url, username, applicationData) {
             'Content-Type': 'application/json'
         },
         json: {
-            "username": username
+            "AccountName": accType,
+            "Name": name,
+            "Email": email,
+            "Phone": tel,
+            "LicenseNum": drNum,
+            "LicenseVer": drVer
         }
     };
 

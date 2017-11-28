@@ -18,7 +18,7 @@ function displayConversions(message, session, base, conversion) {
             type: "AdaptiveCard",
             body: [{
                     "type": "TextBlock",
-                    "text": "Adaptive Card design session",
+                    "text": "Contoso Currency Convertor",
                     "size": "large",
                     "weight": "bolder"
                 },
