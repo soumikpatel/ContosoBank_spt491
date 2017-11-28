@@ -82,5 +82,5 @@ function handleAccountDetailsResponse(message, session) {
 
     console.log("handeling this piece of shit");
     console.log(message);
-    session.send(message);
+    //session.send(message);
 }
