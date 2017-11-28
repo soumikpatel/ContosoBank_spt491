@@ -295,7 +295,7 @@ function displayConversions(message, session, base, conversion) {
             ],
             "actions": [{
                 "type": "Action.Submit",
-                "title": "Submit"
+                "title": "Convert"
             }]
         }
     }

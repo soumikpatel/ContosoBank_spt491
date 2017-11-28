@@ -29,7 +29,7 @@ exports.startDialog = function(bot) {
 
 
     bot.dialog('BankAccounts', function(session) {
-        //session.send(bankingAccounts.displayBankAccounts(session));
+        session.send(bankingAccounts.displayBankAccounts(session));
     }).triggerAction({
         matches: 'BankAccounts'
     });
