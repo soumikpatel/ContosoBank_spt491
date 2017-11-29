@@ -78,10 +78,6 @@ function handleAccountDetailsResponse(message, session) {
                     "type": "ColumnSet",
                     "columns": columns
                 }]
-            }],
-            "actions": [{
-                "type": "Action.Submit",
-                "title": "Apply"
             }]
         }
     }));

@@ -14,6 +14,7 @@ exports.sendApplication = function postApplication(session) {
 
 
         rest.apply(url, name, email, tel, accType, drNum, drVer);
+        session.beginDialog('GetApplication');
     } else {
         var card = ApplicationData();
         session.send(new builder.Message(session).addAttachment(card));

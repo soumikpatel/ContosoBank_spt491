@@ -81,5 +81,5 @@ function handleDelete(message, session, name, acc) {
     //         // var licenseVer = applicationResponse[application].LicenseVer;
 
     session.send("%s, your application for %s has now been deleted", name, acc);
-    session.beginDialog("Welcome");
+    //session.beginDialog("Welcome");
 }
