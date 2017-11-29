@@ -11,7 +11,7 @@ exports.welcomeCard = function welCard(session) {
                 "type": "Container",
                 "items": [{
                         "type": "Image",
-                        "url": "https://github.com/soumikpatel/ContosoBank_spt491/blob/master/brandLogo/MainLogo.png",
+                        "url": "https://raw.github.com/soumikpatel/ContosoBank_spt491/blob/master/brandLogo/MainLogo.png",
                         "size": "small",
                         "style": "person"
                     }, {

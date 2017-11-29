@@ -74,7 +74,42 @@ exports.startDialog = function(bot) {
     ]).triggerAction({
         matches: 'GetApplication'
     });
+    //------------ Delete Application
+    bot.dialog('DeleteApplication', [
+        function(session, args, next) {
+            session.dialogData.args = args || {};
+            if (!session.conversationData["name"]) {
+                //builder.Prompts.text(session, "Enter your name");
+                builder.Prompts.text(session, "Enter your name");
+            } else {
+                next(); // Skip if we already have this info.
+            }
+        },
+        function(session, results, next) {
+            if (results.response) {
+                session.conversationData["name"] = results.response;
+            }
+            //session.send("You want to delete one of your favourite foods.");
 
+            // Pulls out the food entity from the session if it exists
+            var accEntity = builder.EntityRecognizer.findEntity(session.dialogData.args.intent.entities, 'account');
+            var username = session.conversationData["name"];
+            console.log("Data")
+            console.log(session.conversationData)
+                // console.log(username);
+
+            // Checks if the for entity was found
+            if (accEntity) {
+                session.send('Deleting \'%s\'...', accEntity.entity);
+                appDetails.deleteApplication(session, username, accEntity.entity); //<--- CALLL WE WANT
+            } else {
+                session.send("Not found! Please try again");
+            }
+
+        }
+    ]).triggerAction({
+        matches: 'DeleteApplication'
+    });
 
     //------------ Welcome
     bot.dialog('Welcome', function(session) {

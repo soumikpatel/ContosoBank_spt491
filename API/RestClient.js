@@ -64,6 +64,8 @@ exports.getCurrencyData = function getData(url, session, callback) {
     });
 };
 
+//------------ getting all application data
+
 exports.displayApplicationDetails = function getData(url, session, name, callback) {
     request.get(url, { 'headers': { 'ZUMO-API-VERSION': '2.0.0' } }, function(err, res, body) {
         if (err) {
@@ -72,4 +74,27 @@ exports.displayApplicationDetails = function getData(url, session, name, callbac
             callback(body, session, name);
         }
     });
+};
+
+//------------ Delete Call
+exports.deleteApplication = function deleteData(url, session, name, acc, id, callback) {
+    var options = {
+        url: url + "\\" + id,
+        method: 'DELETE',
+        headers: {
+            'ZUMO-API-VERSION': '2.0.0',
+            'Content-Type': 'application/json'
+        }
+    };
+
+    request(options, function(err, res, body) {
+        if (!err && res.statusCode === 200) {
+            console.log(body);
+            callback(body, session, name, acc);
+        } else {
+            console.log(err);
+            console.log(res);
+        }
+    })
+
 };
