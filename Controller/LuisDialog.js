@@ -9,7 +9,7 @@ var customVision = require('./CognitiveDialog');
 
 exports.startDialog = function(bot) {
 
-    var recognizer = new builder.LuisRecognizer('https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/83f1f75d-9945-45fd-ab44-2c481bdfdab2?subscription-key=d63d1605a9d14aa2abeb04de9aaf522f&verbose=true&timezoneOffset=0&q=');
+    var recognizer = new builder.LuisRecognizer('https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/b405e1e9-65f3-4bc8-9233-304c65ea0539?subscription-key=3290d05f82dc43cdb68e41e9c9c3f2fd&verbose=true&timezoneOffset=0&q=');
 
     bot.recognizer(recognizer);
 
