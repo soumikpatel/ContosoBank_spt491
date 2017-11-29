@@ -10,6 +10,7 @@ exports.sendApplication = function postApplication(session) {
         var accType = session.message.value.accountType;
         var drNum = session.message.value.DLnum;
         var drVer = session.message.value.DLver;
+        session.conversationData['name'] = name;
 
 
         rest.apply(url, name, email, tel, accType, drNum, drVer);

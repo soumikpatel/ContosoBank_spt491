@@ -40,6 +40,17 @@ exports.apply = function getData(url, name, email, tel, accType, drNum, drVer) {
     });
 };
 
+//------------ Bank Application Data to see
+exports.getApplicationDetails = function getData(url, session, callback) {
+    request.get(url, { 'headers': { 'ZUMO-API-VERSION': '2.0.0' } }, function(err, res, body) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(body, session, name);
+        }
+    });
+};
+
 
 //------------ Currency Converter API
 exports.getCurrencyData = function getData(url, session, callback) {
@@ -49,6 +60,16 @@ exports.getCurrencyData = function getData(url, session, callback) {
             console.log(err);
         } else {
             callback(message, session);
+        }
+    });
+};
+
+exports.displayApplicationDetails = function getData(url, session, name, callback) {
+    request.get(url, { 'headers': { 'ZUMO-API-VERSION': '2.0.0' } }, function(err, res, body) {
+        if (err) {
+            console.log(err);
+        } else {
+            callback(body, session, name);
         }
     });
 };

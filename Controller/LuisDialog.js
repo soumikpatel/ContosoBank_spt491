@@ -3,6 +3,7 @@ var currencyConversion = require('./Currency');
 var bankingAccounts = require('./BankAccounts');
 var application = require('./Application');
 var welcome = require('./Welcome');
+var appDetails = require('./GetAppliction');
 
 
 exports.startDialog = function(bot) {
@@ -47,6 +48,31 @@ exports.startDialog = function(bot) {
         session.send(application.sendApplication(session));
     }).triggerAction({
         matches: 'AccountApplication'
+    });
+
+    //------------ Show before Delete Application
+    bot.dialog('GetApplication', [
+        function(session, args, next) {
+            session.dialogData.args = args || {};
+            if (!session.conversationData["name"]) {
+                builder.Prompts.text(session, "Enter your name to retrieve your account applications");
+            } else {
+                next(); // Skip if we already have this info.
+            }
+        },
+        function(session, results, next) {
+
+
+            if (results.response) {
+                session.conversationData["name"] = results.response;
+            }
+
+            session.send("Retrieving your details");
+            appDetails.displayApplicationDetails(session, session.conversationData["name"]); // <---- THIS LINE HERE IS WHAT WE NEED 
+
+        }
+    ]).triggerAction({
+        matches: 'GetApplication'
     });
 
 
