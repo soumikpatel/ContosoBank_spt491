@@ -30,9 +30,10 @@ function handleApplicationDetailsResponse(message, session, name) {
         session.send('Sorry, I could not find any applications for %s', name);
         session.conversationData["name"] = "";
         session.beginDialog('GetApplication');
-    } else {
-        session.beginDialog("Welcome");
     }
+    /*else {
+           session.beginDialog("Welcome");
+       }*/
 
 
     // session.send(applicationResponse[0]);
@@ -67,21 +68,18 @@ exports.deleteApplication = function getDeleteData(session, name, acc) {
 }
 
 function handleDelete(message, session, name, acc) {
-    var applicationResponse = JSON.parse(message);
-    for (var application in applicationResponse) {
-        if (allData[i].Name.toLowerCase() == name.toLowerCase() && !(allData[i].AccountName.toLowerCase() == acc.toLowerCase())) {
-            //console.log(application);
-            var applierName = applicationResponse[application].Name;
-            var acc = applicationResponse[application].AccountName;
-            // var email = applicationResponse[application].Email;
-            // var phone = applicationResponse[application].Phone;
-            // var licenseNum = applicationResponse[application].LicenseNum;
-            // var licenseVer = applicationResponse[application].LicenseVer;
+    // var applicationResponse = JSON.parse(message);
+    // for (var application in applicationResponse) {
+    //     console.log(applicationResponse[application]);
+    //     if (applicationResponse[application].Name.toLowerCase() == name.toLowerCase() && !(applicationResponse[application].AccountName.toLowerCase() == acc.toLowerCase())) {
+    //         //console.log(application);
+    //         var applierName = applicationResponse[application].Name;
+    //         var acc = applicationResponse[application].AccountName;
+    //         // var email = applicationResponse[application].Email;
+    //         // var phone = applicationResponse[application].Phone;
+    //         // var licenseNum = applicationResponse[application].LicenseNum;
+    //         // var licenseVer = applicationResponse[application].LicenseVer;
 
-            session.send("%s, your application for %s has now been deleted", applierName, acc);
-            console.log('for loop ended');
-        } else {
-            session.send("Sorry!");
-        }
-    }
+    session.send("%s, your application for %s has now been deleted", name, acc);
+    session.beginDialog("Welcome");
 }
