@@ -125,8 +125,10 @@ exports.startDialog = function(bot) {
                 if (accEntity) {
                     session.send('Deleting \'%s\'...', accEntity.entity);
                     appDetails.deleteApplication(session, username, accEntity.entity); //<--- CALLL WE WANT
+                    session.beginDialog('GetApplication');
                 } else {
                     session.send("Not found! Please try again");
+                    session.beginDialog('DeleteApplication');
                 }
 
             }

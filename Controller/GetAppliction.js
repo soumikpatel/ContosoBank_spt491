@@ -47,14 +47,22 @@ exports.deleteApplication = function getDeleteData(session, name, acc) {
         //console.log(session);
         console.log('my name');
         console.log(name);
+        var count = 0;
         for (var i in allData) {
             if (allData[i].Name.toLowerCase() == name.toLowerCase() && allData[i].AccountName.toLowerCase() == acc.toLowerCase()) {
                 // console.log(allData[i]);
                 rest.deleteApplication(url, session, name, acc, allData[i].id, handleDelete);
-            } else {
-                session.send("Could not find application. Please try again.")
+                count++;
             }
         }
+        if (count == 0) {
+            session.send('Sorry, I could not find any applications for %s', name);
+            session.conversationData["name"] = "";
+            //session.beginDialog('GetApplication');
+        }
+        /*else {
+                   session.send("Could not find application. Please try again.");
+               }*/
     })
 }
 
